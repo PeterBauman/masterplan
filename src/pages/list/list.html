@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons >
+      <!--button ion-button icon-only start>
+        <ion-icon name='arrow-back'></ion-icon>
+      </button-->
+      <button ion-button icon-only (click)="irAHome()">
+        <ion-icon name='home'></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="chats()">
+        <ion-icon name='chatbubbles'></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="calendario()">
+        <ion-icon name='calendar'></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="notificaciones()">
+        <ion-icon name='contact'></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="agregarNucleo()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-list>
+    <ion-item-sliding *ngFor="let nucleo of nucleos | async" >
+      <ion-item (click)="itemTapped($event, nucleo)">
+        {{nucleo.nombre}}
+        <ion-icon name="{{nucleo.icono}}"  item-left></ion-icon>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button clear icon-only (click)="informacion($event, nucleo)"><ion-icon name="information-circle"></ion-icon></button>
+        <button ion-button clear icon-only (click)="copiar($event, nucleo)"><ion-icon name="copy"></ion-icon></button>
+        <button ion-button clear icon-only (click)="mover($event, nucleo)"><ion-icon name="move"></ion-icon></button>
+        <button ion-button clear icon-only (click)="borrar($event, nucleo)"><ion-icon name="trash"></ion-icon></button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
